@@ -1,0 +1,192 @@
+[
+            {
+            "Store Number": 2001,
+            "Store Name": "Welywn Extra",
+                "Shifts": [
+                            {
+                            "Shift":"Night",
+                            "Department": "Bakery",
+                            "Shift Type": "Overtime",
+                            "Shift Time": " 8:00 to 17:00",
+                            "Duration": "8",
+                            "Date": "19/05/2017"
+                            },
+                            {
+                            "Shift":"Day",
+                            "Department": "Checkout",
+                            "Shift Type": "Overtime",
+                            "Shift Time": "8:00 to 16:00",
+                            "Duration": "7",
+                            "Date": "19/05/2017"
+                            },
+                            {
+                            "Shift":"Night",
+                            "Department": "Bakery",
+                            "Shift Type": "Overtime",
+                            "Shift Time": " 8:00 to 17:00",
+                            "Duration": "8",
+                            "Date": "19/05/2017"
+                            },
+                            {
+                            "Shift":"Day",
+                            "Department": "Checkout",
+                            "Shift Type": "Overtime",
+                            "Shift Time": "8:00 to 16:00",
+                            "Duration": "7",
+                            "Date": "19/05/2017"
+                            }
+                ]
+            },
+             {
+            "Store Number": 2002,
+            "Store Name": "Welywn Express",
+                "Shifts": [
+                            {
+                            "Shift":"Night",
+                            "Department": "Bakery",
+                            "Shift Type": "Overtime",
+                            "Shift Time": " 8:00 to 17:00",
+                            "Duration": "8",
+                            "Date": "19/05/2017"
+                            },
+                            {
+                            "Shift":"Day",
+                            "Department": "Checkout",
+                            "Shift Type": "Overtime",
+                            "Shift Time": "8:00 to 16:00",
+                            "Duration": "7",
+                            "Date": "19/05/2017"
+                            },
+                            {
+                            "Shift":"Night",
+                            "Department": "Bakery",
+                            "Shift Type": "Overtime",
+                            "Shift Time": " 8:00 to 17:00",
+                            "Duration": "8",
+                            "Date": "19/05/2017"
+                            },
+                            {
+                            "Shift":"Day",
+                            "Department": "Checkout",
+                            "Shift Type": "Overtime",
+                            "Shift Time": "8:00 to 16:00",
+                            "Duration": "7",
+                            "Date": "19/05/2017"
+                            }
+                ]
+            },
+            {
+            "Store Number": 2003,
+            "Store Name": "Hatfield Express",
+                "Shifts": [
+                            {
+                            "Shift":"Night",
+                            "Department": "Bakery",
+                            "Shift Type": "Overtime",
+                            "Shift Time": " 8:00 to 17:00",
+                            "Duration": "8",
+                            "Date": "19/05/2017"
+                            },
+                            {
+                            "Shift":"Day",
+                            "Department": "Checkout",
+                            "Shift Type": "Overtime",
+                            "Shift Time": "8:00 to 16:00",
+                            "Duration": "7",
+                            "Date": "19/05/2017"
+                            },
+                            {
+                            "Shift":"Night",
+                            "Department": "Bakery",
+                            "Shift Type": "Overtime",
+                            "Shift Time": " 8:00 to 17:00",
+                            "Duration": "8",
+                            "Date": "19/05/2017"
+                            },
+                            {
+                            "Shift":"Day",
+                            "Department": "Checkout",
+                            "Shift Type": "Overtime",
+                            "Shift Time": "8:00 to 16:00",
+                            "Duration": "7",
+                            "Date": "19/05/2017"
+                            }
+                ]
+            },
+            {
+            "Store Number": 2004,
+            "Store Name": "Hatfield Extra",
+                "Shifts": [
+                            {
+                            "Shift":"Night",
+                            "Department": "Bakery",
+                            "Shift Type": "Overtime",
+                            "Shift Time": " 8:00 to 17:00",
+                            "Duration": "8",
+                            "Date": "19/05/2017"
+                            },
+                            {
+                            "Shift":"Day",
+                            "Department": "Checkout",
+                            "Shift Type": "Overtime",
+                            "Shift Time": "8:00 to 16:00",
+                            "Duration": "7",
+                            "Date": "19/05/2017"
+                            },
+                            {
+                            "Shift":"Night",
+                            "Department": "Bakery",
+                            "Shift Type": "Overtime",
+                            "Shift Time": " 8:00 to 17:00",
+                            "Duration": "8",
+                            "Date": "19/05/2017"
+                            },
+                            {
+                            "Shift":"Day",
+                            "Department": "Checkout",
+                            "Shift Type": "Overtime",
+                            "Shift Time": "8:00 to 16:00",
+                            "Duration": "7",
+                            "Date": "19/05/2017"
+                            }
+                ]
+            },
+           {
+            "Store Number": 2005,
+            "Store Name": "London Metro",
+                "Shifts": [
+                            {
+                            "Shift":"Night",
+                            "Department": "Bakery",
+                            "Shift Type": "Overtime",
+                            "Shift Time": " 8:00 to 17:00",
+                            "Duration": "8",
+                            "Date": "19/05/2017"
+                            },
+                            {
+                            "Shift":"Day",
+                            "Department": "Checkout",
+                            "Shift Type": "Overtime",
+                            "Shift Time": "8:00 to 16:00",
+                            "Duration": "7",
+                           "Date": "19/05/2017"
+                            },
+                            {
+                            "Shift":"Night",
+                            "Department": "Bakery",
+                            "Shift Type": "Overtime",
+                            "Shift Time": " 8:00 to 17:00",
+                            "Duration": "8",
+                            "Date": "19/05/2017"
+                            },
+                            {
+                            "Shift":"Day",
+                            "Department": "Checkout",
+                            "Shift Type": "Overtime",
+                            "Shift Time": "8:00 to 16:00",
+                            "Duration": "7",
+                            "Date": "19/05/2017"
+                            }
+                ]
+            }
+]
