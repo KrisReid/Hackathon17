@@ -54,6 +54,10 @@ function onIntent(intentRequest, session, callback) {
     // dispatch custom intents to handlers here
     if (intentName == "ShiftIntent") {
       handleShiftIntentResponse(intent, session, callback)
+    } else if (intentName == "BookOneIntent") {
+      handleBookOneIntentResponse(intent, session, callback)
+    } else if (intentName == "BookTwoIntent") {
+      handleBookTwoIntentResponse(intent, session, callback)
     } else if (intentName == "AMAZON.YesIntent") {
       handleYesResponse(intent, session, callback)
     } else if (intentName == "AMAZON.NoIntent") {
@@ -98,26 +102,16 @@ function getWelcomeResponse(callback) {
 }
 
 function handleShiftIntentResponse (intent, session, callback) {
-  var speechOutput = "We have an error"
-  var speechOutput2 = "We have an error"
-      getShifts(function(data) {
-          if (data != "ERROR") {
-              console.log(data);
-              var speechOutput = "Yes, there are " + data + " available."
-          }
-          callback(session.attributes, buildSpeechletResponseWithoutCard(speechOutput, "", false))
-      })
-      getShiftLength(function(data) {
-          if (data != "ERROR") {
-              console.log(data);
-              var speechOutput2 = "These are the available stores available: " + data
-          }
-          callback(session.attributes, buildSpeechletResponseWithoutCard(speechOutput2, "", false))
-      })
+  getShifts(function(data) {
+    getShiftLength (function(data2){
+      var speechOutput = "There are " + data2 + "shifts available. These are at: " + data[0] + " or " + data[1]
+      callback(session.attributes, buildSpeechletResponseWithoutCard(speechOutput, "", false))
+    })
+  })
 }
 
 function shiftsURL(){
-  return "http://www.mocky.io/v2/591d885c3f00001f0377c7bc"
+  return "http://www.mocky.io/v2/591dae1b3f0000840777c842"
 }
 
 function getShifts(callback) {
@@ -126,7 +120,7 @@ function getShifts(callback) {
 
     shifts = []
     for(var s of res){
-      shifts.push(s.StoreName);
+      shifts.push(s.ShiftTime + " in " + s.StoreName);
     }
     callback(shifts)
   })
@@ -141,6 +135,30 @@ function getShiftLength(callback) {
       shifts.push(s.StoreName);
     }
     callback(shifts.length)
+  })
+}
+
+function handleBookOneIntentResponse(intent, session, callback) {
+  getShifts(function(data) {
+    var shifts = []
+    shifts = data
+    console.log(shifts);
+    var firstShift = shifts[0];
+    console.log(shifts[0]);
+    var speechOutput = "You have been booked onto the shift at " + firstShift
+    callback(session.attributes, buildSpeechletResponseWithoutCard(speechOutput, "", false))
+  })
+}
+
+function handleBookTwoIntentResponse(intent, session, callback) {
+  getShifts(function(data) {
+    var shifts = []
+    shifts = data
+    console.log(shifts);
+    var secondShift = shifts[1];
+    console.log(shifts[1]);
+    var speechOutput = "You have been booked onto the shift at " + secondShift
+    callback(session.attributes, buildSpeechletResponseWithoutCard(speechOutput, "", false))
   })
 }
 
