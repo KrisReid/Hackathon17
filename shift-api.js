@@ -39,6 +39,8 @@ exports.getShifts = function(req, res) {
 // };
 
 exports.putShift = function(req, res) {
+
+  res.write("Hello!")
   // db.shifts.findById(req.params._id, function(error, shift){
   db.shifts.findById("591e111ccf2a0c03b529fe08", function(error, shift){
 
