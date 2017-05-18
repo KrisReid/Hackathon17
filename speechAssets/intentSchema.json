@@ -2,14 +2,11 @@
   "intents":
   [
     {
-      "intent": "TrelloBoardIntent"
-    },
-		{
-      "intent": "TrelloListIntent",
-			"slots": [
+      "intent": "ShiftIntent",
+      "slots": [
         {
-          "name":"Board",
-          "type": "LIST_OF_BOARDS"
+          "name":"Date",
+          "type": "AMAZON.DATE"
         }
       ]
     },
