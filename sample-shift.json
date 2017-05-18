@@ -7,17 +7,9 @@
     "ShiftType": "Overtime",
     "ShiftTime": "8:00 to 17:00",
     "Duration": "8",
-    "Date": "19/05/2017"
-  },
-  {
-    "StoreNumber": 2001,
-    "StoreName": "Welywn Extra",
-    "Shift": "Day",
-    "Department": "Bakery",
-    "ShiftType": "Overtime",
-    "ShiftTime": "8:00 to 17:00",
-    "Duration": "8",
-    "Date": "23/05/2017"
+    "ShiftDate": "20-05-2017",
+    "ShiftId": "12345",
+    "Assigned": "false"    
   },
   {
     "StoreNumber": 2002,
@@ -27,6 +19,20 @@
     "ShiftType": "Overtime",
     "ShiftTime": "11:00 to 18:00",
     "Duration": "7",
-    "Date": "20/05/2017"
+    "ShiftDate": "19-05-2017",
+    "ShiftId": "12346",
+    "Assigned": "false"
+  },
+  {
+    "StoreNumber": 2003,
+    "StoreName": "Welywn",
+    "Shift": "Day",
+    "Department": "Bakery",
+    "ShiftType": "Overtime",
+    "ShiftTime": "8:00 to 17:00",
+    "Duration": "8",
+    "ShiftDate": "19-05-2017",
+    "ShiftId": "12347",
+    "Assigned": "false"
   }
 ]
