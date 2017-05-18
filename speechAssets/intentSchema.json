@@ -17,6 +17,9 @@
       "intent": "BookTwoIntent"
     },
     {
+      "intent": "BookThreeIntent"
+    },
+    {
       "intent": "AMAZON.YesIntent"
     },
     {
