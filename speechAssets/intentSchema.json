@@ -1,0 +1,32 @@
+{
+  "intents":
+  [
+    {
+      "intent": "TrelloBoardIntent"
+    },
+		{
+      "intent": "TrelloListIntent",
+			"slots": [
+        {
+          "name":"Board",
+          "type": "LIST_OF_BOARDS"
+        }
+      ]
+    },
+    {
+      "intent": "AMAZON.YesIntent"
+    },
+    {
+      "intent": "AMAZON.NoIntent"
+    },
+    {
+      "intent": "AMAZON.CancelIntent"
+    },
+    {
+      "intent": "AMAZON.StopIntent"
+    },
+    {
+      "intent": "AMAZON.HelpIntent"
+    }
+  ]
+}
