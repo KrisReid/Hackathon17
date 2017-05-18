@@ -3,6 +3,7 @@ var TempShifts = require('../models/shift');
 var router = express.Router();
 
 router.route('/shift/:date')
+
 .get(function(req,res){
 var shifts = [];
 for(var shiftList = 0; shiftList < TempShifts.length; shiftList++) {
@@ -14,5 +15,8 @@ for(var shiftList = 0; shiftList < TempShifts.length; shiftList++) {
 }
   res.json(shifts);
 })
+
+
+
 
 module.exports = router;
