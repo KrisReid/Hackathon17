@@ -11,6 +11,12 @@
       ]
     },
     {
+      "intent": "BookOneIntent"
+    },
+    {
+      "intent": "BookTwoIntent"
+    },
+    {
       "intent": "AMAZON.YesIntent"
     },
     {

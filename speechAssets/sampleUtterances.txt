@@ -3,5 +3,19 @@ ShiftIntent what shifts are available
 ShiftIntent what shifts are available on {Date}
 ShiftIntent what shifts are available {Date}
 
+BookOneIntent can i book the first shift
+BookOneIntent one
+BookOneIntent book number one
+BookOneIntent book one
+BookOneIntent book me the first shift
+BookOneIntent book me the first
+
+BookTwoIntent can i book the second shift
+BookTwoIntent two
+BookTwoIntent book number two
+BookTwoIntent book two
+BookTwoIntent book me the second shift
+BookTwoIntent book me the second
+
 AMAZON.HelpIntent Tell me the name again
 AMAZON.HelpIntent Tell me the name
