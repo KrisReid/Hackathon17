@@ -6,7 +6,7 @@ var mongoose = require('mongoose');
 var apiRoute = require('./routes/route');
 
 // Connect to our database
-//mongoose.connect('mongodb://admin:Tesco123@ds143181.mlab.com:43181/colleague');
+mongoose.connect('mongodb://admin:Tesco123@ds143181.mlab.com:43181/colleague');
 
 // Configure body-parser
 app.use(bodyParser.urlencoded({ extended:true }));
