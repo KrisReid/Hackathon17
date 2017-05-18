@@ -1,5 +1,8 @@
 var request = require("request")
 
+//global variable for the day being selected
+var day = "";
+
 // Route the incoming request based on type (LaunchRequest, IntentRequest,
 // etc.) The JSON body of the request is provided in the event parameter.
 exports.handler = function (event, context) {
@@ -102,20 +105,30 @@ function getWelcomeResponse(callback) {
 }
 
 function handleShiftIntentResponse (intent, session, callback) {
+
+  this.day = intent.slots.Date.value
+  console.log(this.day + " !!!!!!!!!!!!!!!!!!!!")
+
   getShifts(function(data) {
     getShiftLength (function(data2){
-      var speechOutput = "There are " + data2 + "shifts available. These are at: " + data[0] + " or " + data[1]
+      var speechOutput = "There are " + data2 + " shifts available. These are at: " + data[0] + " or " + data[1] + ". Do you want the first or second shift?"
       callback(session.attributes, buildSpeechletResponseWithoutCard(speechOutput, "", false))
     })
   })
 }
 
-function shiftsURL(){
+function mockShiftsURL(){
   return "http://www.mocky.io/v2/591dae1b3f0000840777c842"
 }
 
+function shiftsURL(){
+  return "http://www.mocky.io/v2/591dae1b3f0000840777c842/date/"+this.day
+}
+
 function getShifts(callback) {
-  request.get(shiftsURL(), function(error, response, body) {
+  request.get(mockShiftsURL(), function(error, response, body) {
+
+  console.log(body);
     var res = JSON.parse(body);
 
     shifts = []
