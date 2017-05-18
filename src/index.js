@@ -144,25 +144,31 @@ function mockShiftsURL(){
 }
 
 function shiftsURL(){
-  return "http://www.mocky.io/v2/591dae1b3f0000840777c842/date/"+this.day
+  return "https://enigmatic-brook-91397.herokuapp.com/api/shifts"
+}
+
+function shiftsUpdateURL(){
+  return "https://enigmatic-brook-91397.herokuapp.com/api/shift/:_id"
 }
 
 function getShifts(callback) {
-  request.get(mockShiftsURL(), function(error, response, body) {
+  request.get(shiftsURL(), function(error, response, body) {
 
   console.log(body);
     var res = JSON.parse(body);
 
     shifts = []
     for(var s of res){
-      shifts.push(s.ShiftTime + " in " + s.StoreName);
+      if(s.Assigned == "false"){
+        shifts.push(s);
+      }
     }
     callback(shifts)
   })
 }
 
 function getShiftLength(callback) {
-  request.get(mockShiftsURL(), function(error, response, body) {
+  request.get(shiftsURL(), function(error, response, body) {
     var res = JSON.parse(body);
 
     shifts = []
@@ -173,18 +179,28 @@ function getShiftLength(callback) {
   })
 }
 
+
+function postShiftId(shift) {
+  request.post({
+    shiftsUpdateURL(),
+    headers:{'content-type': 'application/json'},
+    body:shift
+  },function(error, response, body) {
+    console.log(body);
+  })
+}
+
+
 function handleBookOneIntentResponse(intent, session, callback) {
   getShifts(function(data) {
     var shifts = []
     shifts = data
     var firstShift = shifts[0];
-    var speechOutput = "You have been booked onto the shift from " + firstShift
+    var speechOutput = "You have been booked onto the shift from " + firstShift.ShiftTime + " in " + firstShift.StoreName
     callback(session.attributes, buildSpeechletResponseWithoutCard(speechOutput, "", false))
 
-    //put to the api of the shift id
-    // request.post(mockShiftsURL(), function(error, response, body){
-    //   var id = shifts[0]ShiftId
-    // }
+    firstShift.Assigned = "true"
+    postShiftId(firstShift)
 
   })
 }
@@ -194,7 +210,7 @@ function handleBookTwoIntentResponse(intent, session, callback) {
     var shifts = []
     shifts = data
     var secondShift = shifts[1];
-    var speechOutput = "You have been booked onto the shift from " + secondShift
+    var speechOutput = "You have been booked onto the shift from " + secondShift.ShiftTime + " in " + secondShift.StoreName
     callback(session.attributes, buildSpeechletResponseWithoutCard(speechOutput, "", false))
   })
 }
@@ -204,7 +220,7 @@ function handleBookThreeIntentResponse(intent, session, callback) {
     var shifts = []
     shifts = data
     var thirdShift = shifts[2];
-    var speechOutput = "You have been booked onto the shift from " + thirdShift
+    var speechOutput = "You have been booked onto the shift from " + thirdShift.ShiftTime + " in " + thirdShift.StoreName
     callback(session.attributes, buildSpeechletResponseWithoutCard(speechOutput, "", false))
   })
 }

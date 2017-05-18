@@ -17,28 +17,54 @@ exports.getShifts = function(req, res) {
     });
 };
 
-/*
+
 //this is the code to create a 'post' call to update the mongodb with a new user
-exports.postUser = function(req, res) {
+// exports.postShift = function(req, res) {
+//
+//     var requestType = req.get('Content-Type');
+//
+//     if (requestType == "application/json") {
+//         db.shifts.insert(req.body, function(err, response){
+//             if (err) {
+//                 res.status(500).send(err);
+//             }
+//             else {
+//                 res.status(201).send(response.ops[0]);
+//             }
+//         });
+//     }
+//     else {
+//         res.status(400).send("This post call expects a content-type of application/json");
+//     }
+// };
 
-    var requestType = req.get('Content-Type');
+exports.putShift = function(req, res) {
+  db.shifts.findById(req.params._id, function(error, player){
 
-    if (requestType == "application/json") {
-        db.users.insert(req.body, function(err, response){
-            if (err) {
-                res.status(500).send(err);
-            }
-            else {
-                res.status(201).send(response.ops[0]);
-            }
-        });
-    }
-    else {
-        res.status(400).send("This post call expects a content-type of application/json");
-    }
+    shift._id = req.body._id;
+    shift.StoreNumber = req.body.StoreNumber;
+    shift.StoreName = req.body.StoreName;
+    shift.Shift = req.body.Shift;
+    shift.Department = req.body.Department;
+    shift.ShiftType = req.body.ShiftType;
+    shift.ShiftTime = req.body.ShiftTime;
+    shift.Duration = req.body.Duration;
+    shift.ShiftDate = req.body.ShiftDate;
+    shift.ShiftId = req.body.ShiftId;
+    shift.Assigned = req.body.Assigned;
+
+    db.Shifts.update({_id: shift._id}, {StoreNumber: shift.StoreNumber, StoreName: shift.StoreName, Shift: shift.Shift, Department: shift.Department, ShiftType: shift.ShiftType, ShiftTime: shift.ShiftTime, Duration: shift.Duration, ShiftDate: shift.ShiftDate, ShiftId: shift.ShiftId, Assigned: shift.Assigned}, function (err) {
+      if (err) {
+        throw err;
+      }
+      else {
+        res.status(201).send(shift);
+      }
+    })
+
+  });
 };
 
-*/
 exports.ping = function(req,res){
     res.status(200).send("Server is up and running!");
 };
