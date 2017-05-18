@@ -2,7 +2,8 @@ var express = require('express');
 var TempShifts = require('../models/shift');
 var router = express.Router();
 
-app.get('/shifts', function (req, res){
+router.route('/shifts')
+.get(function (req, res){
     TempShifts.find({}, 'shift', function(err, shifts){
         if(err){
         } else{
@@ -10,5 +11,28 @@ app.get('/shifts', function (req, res){
         }
     })
 });
+
+router.route('/shift/:date')
+
+.get(function(req,res){
+var shifts = [];
+
+TempShifts.find({}, 'shift', function(err, shifts){
+    if(err){
+    } else{
+    	 for(var shiftList = 0; shiftList < TempShifts.length; shiftList++) {
+    	    var shift= TempShifts[shiftList];
+    	    if (shift.ShiftDate==req.params.date && shift.Assigned=="false")
+    	    {
+    	      shifts.push(shift);
+    	    }
+    	}
+        
+    }
+})
+
+
+  res.json(shifts);
+})
 
 module.exports = router;
