@@ -1,0 +1,26 @@
+{
+  "name": "colleague-app-alexa",
+  "version": "0.0.1",
+  "description": "",
+  "engines": {
+    "node": "7.10.0"
+  },
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "ejs": "2.5.6",
+    "express": "4.15.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/KrisReid/Hackathon17"
+  },
+  "keywords": [
+    "node",
+    "heroku",
+    "express"
+  ],
+  "license": "MIT"
+}
