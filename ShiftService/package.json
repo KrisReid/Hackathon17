@@ -1,0 +1,9 @@
+{
+"name": "shiftapi",
+"main": "server.js",
+"dependencies": {
+    "express": "~4.0.0",
+    "mongoose": "^4.4.6",
+    "body-parser": "~1.0.1"
+  }
+}
