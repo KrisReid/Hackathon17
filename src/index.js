@@ -61,6 +61,8 @@ function onIntent(intentRequest, session, callback) {
       handleBookOneIntentResponse(intent, session, callback)
     } else if (intentName == "BookTwoIntent") {
       handleBookTwoIntentResponse(intent, session, callback)
+    } else if (intentName == "BookThreeIntent") {
+      handleBookThreeIntentResponse(intent, session, callback)
     } else if (intentName == "AMAZON.YesIntent") {
       handleYesResponse(intent, session, callback)
     } else if (intentName == "AMAZON.NoIntent") {
@@ -75,6 +77,8 @@ function onIntent(intentRequest, session, callback) {
       throw "Invalid attempt"
     }
 }
+
+handleBookThreeIntentResponse
 
 /**
  * Called when the user ends the session.
@@ -111,14 +115,32 @@ function handleShiftIntentResponse (intent, session, callback) {
 
   getShifts(function(data) {
     getShiftLength (function(data2){
-      var speechOutput = "There are " + data2 + " shifts available. These are at: " + data[0] + " or " + data[1] + ". Do you want the first or second shift?"
-      callback(session.attributes, buildSpeechletResponseWithoutCard(speechOutput, "", false))
+      if (data.length == 0){
+        var speechOutput = "There are no shifts available. Check back later for available shifts"
+        var shouldEndSession = true
+      }
+      if (data.length == 1){
+        var speechOutput = "There is " + data2 + " shift available. Theis is at: " + data[0] + ". Do you want this shift? Alternatively, say cancel not to select this shift"
+        var shouldEndSession = false
+      }
+      if (data.length == 2){
+        var speechOutput = "There are " + data2 + " shifts available. These are at: " + data[0] + ". Or " + data[1] + ". Do you want the first or second shift? Alternatively, say cancel for none of these shifts"
+        var shouldEndSession = false
+      }
+      if (data.length == 3){
+        var speechOutput = "There are " + data2 + " shifts available. These are at: " + data[0] + ". Or " + data[1] + ". Or " + data[2] + ". Do you want the first, second, or third shift? Alternatively, say cancel for none of these shifts"
+        var shouldEndSession = false
+      }
+      callback(session.attributes, buildSpeechletResponseWithoutCard(speechOutput, "", shouldEndSession))
     })
   })
 }
 
 function mockShiftsURL(){
-  return "http://www.mocky.io/v2/591dae1b3f0000840777c842"
+  //Two
+  // return "http://www.mocky.io/v2/591dae1b3f0000840777c842"
+  //Three
+  return "http://www.mocky.io/v2/591dd2a53f00007c0877c8ba"
 }
 
 function shiftsURL(){
@@ -140,7 +162,7 @@ function getShifts(callback) {
 }
 
 function getShiftLength(callback) {
-  request.get(shiftsURL(), function(error, response, body) {
+  request.get(mockShiftsURL(), function(error, response, body) {
     var res = JSON.parse(body);
 
     shifts = []
@@ -171,6 +193,18 @@ function handleBookTwoIntentResponse(intent, session, callback) {
     var secondShift = shifts[1];
     console.log(shifts[1]);
     var speechOutput = "You have been booked onto the shift at " + secondShift
+    callback(session.attributes, buildSpeechletResponseWithoutCard(speechOutput, "", false))
+  })
+}
+
+function handleBookThreeIntentResponse(intent, session, callback) {
+  getShifts(function(data) {
+    var shifts = []
+    shifts = data
+    console.log(shifts);
+    var thirdShift = shifts[2];
+    console.log(shifts[2]);
+    var speechOutput = "You have been booked onto the shift at " + thirdShift
     callback(session.attributes, buildSpeechletResponseWithoutCard(speechOutput, "", false))
   })
 }
