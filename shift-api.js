@@ -39,7 +39,8 @@ exports.getShifts = function(req, res) {
 // };
 
 exports.putShift = function(req, res) {
-  db.shifts.findById(req.params._id, function(error, player){
+  // db.shifts.findById(req.params._id, function(error, shift){
+  db.shifts.findById("591e111ccf2a0c03b529fe08", function(error, shift){
 
     shift._id = req.body._id;
     shift.StoreNumber = req.body.StoreNumber;
