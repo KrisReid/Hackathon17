@@ -1,8 +1,5 @@
 var request = require("request")
 
-var boards = []
-var lists = []
-
 // Route the incoming request based on type (LaunchRequest, IntentRequest,
 // etc.) The JSON body of the request is provided in the event parameter.
 exports.handler = function (event, context) {
@@ -55,10 +52,8 @@ function onIntent(intentRequest, session, callback) {
     var intentName = intentRequest.intent.name;
 
     // dispatch custom intents to handlers here
-    if (intentName == "TrelloBoardIntent") {
-      handleTrelloBoardResponse(intent, session, callback)
-    } else if (intentName == "TrelloListIntent") {
-      handleTrelloListResponse(intent, session, callback)
+    if (intentName == "ShiftIntent") {
+      handleShiftIntentResponse(intent, session, callback)
     } else if (intentName == "AMAZON.YesIntent") {
       handleYesResponse(intent, session, callback)
     } else if (intentName == "AMAZON.NoIntent") {
@@ -85,11 +80,11 @@ function onSessionEnded(sessionEndedRequest, session) {
 // ------- Skill specific logic -------
 
 function getWelcomeResponse(callback) {
-    var speechOutput = "Welcome! How can Trello assist help you?"
+    var speechOutput = "Welcome!"
 
-    var reprompt = "How can Trello assist help you?"
+    var reprompt = "How can Tesco assist help you?"
 
-    var header = "Trello"
+    var header = "Tesco Assist"
 
     var shouldEndSession = false
 
@@ -102,137 +97,56 @@ function getWelcomeResponse(callback) {
 
 }
 
-function handleTrelloBoardResponse (intent, session, callback) {
-    var speechOutput = "We have an error"
-    getTrelloBoards(function(data) {
-        if (data != "ERROR") {
-            console.log(data);
-            var speechOutput = data + ". Is there anything else I can help you with?"
-        }
-        callback(session.attributes, buildSpeechletResponseWithoutCard(speechOutput, "", false))
-    })
+function handleShiftIntentResponse (intent, session, callback) {
+  var speechOutput = "We have an error"
+  var speechOutput2 = "We have an error"
+      getShifts(function(data) {
+          if (data != "ERROR") {
+              console.log(data);
+              var speechOutput = "Yes, there are " + data + " available."
+          }
+          callback(session.attributes, buildSpeechletResponseWithoutCard(speechOutput, "", false))
+      })
+      getShiftLength(function(data) {
+          if (data != "ERROR") {
+              console.log(data);
+              var speechOutput2 = "These are the available stores available: " + data
+          }
+          callback(session.attributes, buildSpeechletResponseWithoutCard(speechOutput2, "", false))
+      })
 }
 
-function boardsURL(){
-  return "https://api.trello.com/1/members/alisonandkris/boards?key=0dec8b1dc8ced70ed1845e09a5daff2d&token=d7e476e54bc051d675f245596c7ab04d6076857907d6830dd419bba46482472d"
+function shiftsURL(){
+  return "http://www.mocky.io/v2/591d885c3f00001f0377c7bc"
 }
 
-function getTrelloBoards(callback) {
-    request.get(boardsURL(), function(error, response, body) {
-        var d = JSON.parse(body)
+function getShifts(callback) {
+  request.get(shiftsURL(), function(error, response, body) {
+    var res = JSON.parse(body);
 
-        boards = []
-        for(var i of d){
-            boards.push(i.name);
-        }
-        callback(boards);
-    })
+    shifts = []
+    for(var s of res){
+      shifts.push(s.StoreName);
+    }
+    callback(shifts)
+  })
 }
 
-var board = ""
+function getShiftLength(callback) {
+  request.get(shiftsURL(), function(error, response, body) {
+    var res = JSON.parse(body);
 
-function handleTrelloListResponse (intent, session, callback) {
-
-  // might need to load boards array first?
-  // request.get(boardsURL(), function(error, response, body) {
-  //     var d = JSON.parse(body)
-  //
-  //     boards = []
-  //     for(var i of d){
-  //         boards.push(i.name);
-  //     }
-  //     callback(boards);
-  // })
-
-  board = intent.slots.Board.value.toLowerCase()
-  console.log("BOARD NAME: " + board);
-  
-  // if (!boards[board]){
-  //   var speechOutput = "Sorry, this is not a known board!"
-  //   var repromptText = "Try another board"
-  //   var header = "Not a known board"
-  //
-  //   shouldEndSession = false
-  //
-  //   callback(session.attributes, buildSpeechletResponse(header, speechOutput, repromptText, shouldEndSession))
-  //
-  // } else {
-    getTrelloLists(function(data) {
-        if (data != "ERROR") {
-            console.log(data);
-            var speechOutput = data + ". Is there anything else I can help you with?"
-        }
-        callback(session.attributes, buildSpeechletResponseWithoutCard(speechOutput, "", false))
-    })
-  // }
-  board = ""
-
+    shifts = []
+    for(var s of res){
+      shifts.push(s.StoreName);
+    }
+    callback(shifts.length)
+  })
 }
 
-function boardsURL2(){
-  return "https://api.trello.com/1/boards/jhgWDodC/lists?cards=open&card_fields=name&fields=name&key=0dec8b1dc8ced70ed1845e09a5daff2d&token=d7e476e54bc051d675f245596c7ab04d6076857907d6830dd419bba46482472d"
-}
-
-function boardsURL3(){
-  return "https://api.trello.com/1/boards/lZuFau6I/lists?cards=open&card_fields=name&fields=name&key=0dec8b1dc8ced70ed1845e09a5daff2d&token=d7e476e54bc051d675f245596c7ab04d6076857907d6830dd419bba46482472d"
-}
-
-function boardsURL4(){
-  return "https://api.trello.com/1/boards/NTLf9sU6/lists?cards=open&card_fields=name&fields=name&key=0dec8b1dc8ced70ed1845e09a5daff2d&token=d7e476e54bc051d675f245596c7ab04d6076857907d6830dd419bba46482472d"
-}
-
-// thirty before thirty
-// stuff we want approval board
-// house to do list
-
-function getTrelloLists(callback) {
-
-  console.log("BOARD NAME: " + board);
-
-  if (board == "30 before 30") {
-    console.log("IN THE 30 IF LOOP")
-    request.get(boardsURL3(), function(error, response, body) {
-        var d = JSON.parse(body)
-
-        lists = []
-        for(var i of d){
-            lists.push(i.name);
-        }
-        callback(lists);
-    })
-  }
-  else if (board == "stuff we want approval board") {
-    console.log("IN THE stuff we want approval board IF LOOP")
-    request.get(boardsURL2(), function(error, response, body) {
-        var d = JSON.parse(body)
-
-        lists = []
-        for(var i of d){
-            lists.push(i.name);
-        }
-        callback(lists);
-    })
-  }
-  else if (board == "house to do list") {
-    console.log("IN THE house to do IF LOOP")
-    request.get(boardsURL4(), function(error, response, body) {
-        var d = JSON.parse(body)
-
-        lists = []
-        for(var i of d){
-            lists.push(i.name);
-        }
-        callback(lists);
-    })
-  }
-  else {
-    console.log("IT DID NONE ...")
-  }
-
-}
 
 function handleYesResponse(intent, session, callback) {
-  var speechOutput = "Great! What else can Trello assist help you with?"
+  var speechOutput = "Great! What else can Tesco assist help you with?"
   var repromptText = speechOutput
   shouldEndSession = false
 
@@ -247,7 +161,7 @@ function handleGetHelpRequest(intent, session, callback) {
   if (!session.attributes){
     session.attributes = {};
   }
-  var speechOutput = "Trello assist can answer your questions about boards. Keep posted for more!"
+  var speechOutput = "Tesco assist can currently help you book extra shifts. Keep posted for more!"
   var repromptText = speechOutput
   shouldEndSession = false
 

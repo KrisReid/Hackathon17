@@ -1,17 +1,7 @@
-TrelloBoardIntent Tell me all my Trello Boards
-TrelloBoardIntent Tell me the name of my Trello boards
-TrelloBoardIntent Tell me my boards
-TrelloBoardIntent What are the names of my Trello boards
-TrelloBoardIntent What Trello boards do i have
-TrelloBoardIntent What boards do i have
-TrelloBoardIntent Trello Boards
-
-TrelloListIntent Tell me the lists within {Board}
-TrelloListIntent Tell me the lists within the {Board}
-TrelloListIntent Tell me the lists within {Board} board
-TrelloListIntent Tell me the lists within the {Board} board
-TrelloListIntent What lists are there in the {Board}
-TrelloListIntent {Board}
+ShiftIntent if there are any overtime shifts available for {Date} close to my home
+ShiftIntent what shifts are available
+ShiftIntent what shifts are available on {Date}
+ShiftIntent what shifts are available {Date}
 
 AMAZON.HelpIntent Tell me the name again
 AMAZON.HelpIntent Tell me the name
