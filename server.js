@@ -15,7 +15,7 @@ app.use(bodyParser.json());
 app.use(express.static('public'));
 
 // Users API calls
-app.put('/api/shift/:_id', shiftApi.putShift);
+app.put('/api/shift', shiftApi.putShift);
 app.get('/api/shifts', shiftApi.getShifts);
 
 // Server Ping API call
