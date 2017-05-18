@@ -177,11 +177,15 @@ function handleBookOneIntentResponse(intent, session, callback) {
   getShifts(function(data) {
     var shifts = []
     shifts = data
-    console.log(shifts);
     var firstShift = shifts[0];
-    console.log(shifts[0]);
-    var speechOutput = "You have been booked onto the shift at " + firstShift
+    var speechOutput = "You have been booked onto the shift from " + firstShift
     callback(session.attributes, buildSpeechletResponseWithoutCard(speechOutput, "", false))
+
+    //put to the api of the shift id
+    // request.post(mockShiftsURL(), function(error, response, body){
+    //   var id = shifts[0]ShiftId
+    // }
+
   })
 }
 
@@ -189,10 +193,8 @@ function handleBookTwoIntentResponse(intent, session, callback) {
   getShifts(function(data) {
     var shifts = []
     shifts = data
-    console.log(shifts);
     var secondShift = shifts[1];
-    console.log(shifts[1]);
-    var speechOutput = "You have been booked onto the shift at " + secondShift
+    var speechOutput = "You have been booked onto the shift from " + secondShift
     callback(session.attributes, buildSpeechletResponseWithoutCard(speechOutput, "", false))
   })
 }
@@ -201,10 +203,8 @@ function handleBookThreeIntentResponse(intent, session, callback) {
   getShifts(function(data) {
     var shifts = []
     shifts = data
-    console.log(shifts);
     var thirdShift = shifts[2];
-    console.log(shifts[2]);
-    var speechOutput = "You have been booked onto the shift at " + thirdShift
+    var speechOutput = "You have been booked onto the shift from " + thirdShift
     callback(session.attributes, buildSpeechletResponseWithoutCard(speechOutput, "", false))
   })
 }
