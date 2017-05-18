@@ -6,7 +6,8 @@ var mongoose = require('mongoose');
 var apiRoute = require('./routes/route');
 
 // Connect to our database
-mongoose.connect('mongodb://admin:Tesco123@ds143181.mlab.com:43181/colleague');
+// mongoose.connect('mongodb://admin:Tesco123@ds143181.mlab.com:43181/colleague');
+mongoose.connect('mongodb://kris:kris@ds157839.mlab.com:57839/tnf/');
 
 // Configure body-parser
 app.use(bodyParser.urlencoded({ extended:true }));
@@ -19,4 +20,5 @@ var port = 8080;
 app.use('/shiftapi', apiRoute)
 // START THE SERVER
 app.listen(port, function () {
+  console.log('app is listening on port '+ port);
 })
