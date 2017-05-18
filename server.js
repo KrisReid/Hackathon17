@@ -10,6 +10,7 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
 app.get('/', function(request, response) {
+  response.send("Tests");
 //  response.render(express.static(path.join(__dirname,'/public/pages/dashboard.html')));
 });
 
