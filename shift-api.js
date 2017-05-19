@@ -33,7 +33,14 @@ exports.putShift = function(req, res) {
     shift.ShiftId = req.body.ShiftId;
     shift.Assigned = req.body.Assigned;
 
-    db.shifts.remove({_id: shift._id});
+    db.shifts.remove({_id: shift._id}, function(error, shift){
+      if(error){
+        res.status(500).send(error);
+        console.log('There has been a 500 error response');
+      } else {
+        res.json({ message: 'Successfully deleted '});
+      }
+    })
 
     db.shifts.insert({StoreNumber: shift.StoreNumber, StoreName: shift.StoreName, Shift: shift.Shift, Department: shift.Department, ShiftType: shift.ShiftType, ShiftTime: shift.ShiftTime, Duration: shift.Duration, ShiftDate: shift.ShiftDate, ShiftId: shift.ShiftId, Assigned: shift.Assigned}, function (err) {
       if (err) {
