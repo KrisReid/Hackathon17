@@ -18,7 +18,7 @@ exports.getShifts = function(req, res) {
 };
 
 exports.putShift = function(req, res) {
-  
+
   db.shifts.findById(req.params._id, function(error, shift){
 
     shift._id = req.body._id;
@@ -40,6 +40,7 @@ exports.putShift = function(req, res) {
       }
       else {
         res.status(201).send(shift);
+        res.write(shift);
       }
     })
 

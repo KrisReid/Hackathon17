@@ -148,8 +148,8 @@ function shiftsURL(){
   return "https://enigmatic-brook-91397.herokuapp.com/api/shifts"
 }
 
-function shiftPutURL(){
-  return "https://enigmatic-brook-91397.herokuapp.com/api/shift/591e111ccf2a0c03b529fe08"
+function shiftPostURL(){
+  return "https://enigmatic-brook-91397.herokuapp.com/api/shift/:_id"
 }
 
 function getShifts(callback) {
@@ -181,15 +181,15 @@ function getShiftLength(callback) {
 }
 
 
-function putShift(shift) {
-  request.put(shiftsUpdateURL(),function(error, response, shift){
-    if (error) {
-      console.log(error);
-    }else{
-      console.log(reponse)
-    }
-  }
-}
+// function putShift(shift) {
+//   request.put(shiftsUpdateURL(),function(error, response, shift){
+//     if (error) {
+//       console.log(error);
+//     }else{
+//       console.log(reponse)
+//     }
+//   }
+// }
 
 
 function handleBookOneIntentResponse(intent, session, callback) {
@@ -200,8 +200,9 @@ function handleBookOneIntentResponse(intent, session, callback) {
     var speechOutput = "You have been booked onto the shift from " + firstShift.ShiftTime + " in " + firstShift.StoreName
     callback(session.attributes, buildSpeechletResponseWithoutCard(speechOutput, "", false))
 
-    // firstShift.Assigned = "true"
-    // putShift(firstShift)
+    firstShift.Assigned = "true"
+    putShift(firstShift)
+    console.log(firstShift)
 
   })
 }
