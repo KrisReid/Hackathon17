@@ -33,7 +33,7 @@ exports.putShift = function(req, res) {
     shift.ShiftId = req.body.ShiftId;
     shift.Assigned = req.body.Assigned;
 
-    db.shifts.update({_id: shift._id}, {StoreNumber: shift.StoreNumber, StoreName: shift.StoreName, Shift: shift.Shift, Department: shift.Department, ShiftType: shift.ShiftType, ShiftTime: shift.ShiftTime, Duration: shift.Duration, ShiftDate: shift.ShiftDate, ShiftId: shift.ShiftId, Assigned: shift.Assigned}, function (err) {
+    db.shifts.insert({_id: shift._id}, {StoreNumber: shift.StoreNumber, StoreName: shift.StoreName, Shift: shift.Shift, Department: shift.Department, ShiftType: shift.ShiftType, ShiftTime: shift.ShiftTime, Duration: shift.Duration, ShiftDate: shift.ShiftDate, ShiftId: shift.ShiftId, Assigned: shift.Assigned}, function (err) {
       if (err) {
         res.status(500).send(err);
         throw err;
