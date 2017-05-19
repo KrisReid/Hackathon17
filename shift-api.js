@@ -39,8 +39,7 @@ exports.putShift = function(req, res) {
         throw err;
       }
       else {
-        res.status(201).send(shift);
-        res.write(shift);
+        res.status(201).send();
       }
     })
 
