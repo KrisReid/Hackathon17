@@ -33,7 +33,7 @@ exports.putShift = function(req, res) {
     shift.ShiftId = req.body.ShiftId;
     shift.Assigned = req.body.Assigned;
 
-    db.shifts.remove({_id: shift._id}, function(error, shift){
+    db.shifts.remove({_id: req.params._id}, function(error, shift){
       if(error){
         res.status(500).send(error);
         console.log('There has been a 500 error response');
