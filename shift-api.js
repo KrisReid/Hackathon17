@@ -17,32 +17,9 @@ exports.getShifts = function(req, res) {
     });
 };
 
-
-//this is the code to create a 'post' call to update the mongodb with a new user
-// exports.postShift = function(req, res) {
-//
-//     var requestType = req.get('Content-Type');
-//
-//     if (requestType == "application/json") {
-//         db.shifts.insert(req.body, function(err, response){
-//             if (err) {
-//                 res.status(500).send(err);
-//             }
-//             else {
-//                 res.status(201).send(response.ops[0]);
-//             }
-//         });
-//     }
-//     else {
-//         res.status(400).send("This post call expects a content-type of application/json");
-//     }
-// };
-
 exports.putShift = function(req, res) {
 
-  res.write("Hello!")
-  // db.shifts.findById(req.params._id, function(error, shift){
-  db.shifts.findById("591e111ccf2a0c03b529fe08", function(error, shift){
+  db.shifts.findById(req.params._id, function(error, shift){
 
     shift._id = req.body._id;
     shift.StoreNumber = req.body.StoreNumber;
