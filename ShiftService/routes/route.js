@@ -4,7 +4,11 @@ var router = express.Router();
 
 router.route('/shifts')
 .get(function (req, res){
+<<<<<<< HEAD
     TempShifts.find({}, 'shifts', function(err, shifts){
+=======
+    TempShifts.find({}, 'shift', function(err, shifts){
+>>>>>>> origin/master
         if(err){
         } else{
             res.render('shift-list', shifts);
@@ -27,7 +31,11 @@ TempShifts.find({}, 'shift', function(err, shifts){
     	      shifts.push(shift);
     	    }
     	}
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> origin/master
     }
 })
 
@@ -35,4 +43,8 @@ TempShifts.find({}, 'shift', function(err, shifts){
   res.json(shifts);
 })
 
+<<<<<<< HEAD
 module.exports = router;
+=======
+module.exports = router;
+>>>>>>> origin/master
