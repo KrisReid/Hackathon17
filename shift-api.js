@@ -18,7 +18,7 @@ exports.getShifts = function(req, res) {
 };
 
 exports.putShift = function(req, res) {
-
+  
   db.shifts.findById(req.params._id, function(error, shift){
 
     shift._id = req.body._id;
@@ -33,8 +33,9 @@ exports.putShift = function(req, res) {
     shift.ShiftId = req.body.ShiftId;
     shift.Assigned = req.body.Assigned;
 
-    db.Shifts.update({_id: shift._id}, {StoreNumber: shift.StoreNumber, StoreName: shift.StoreName, Shift: shift.Shift, Department: shift.Department, ShiftType: shift.ShiftType, ShiftTime: shift.ShiftTime, Duration: shift.Duration, ShiftDate: shift.ShiftDate, ShiftId: shift.ShiftId, Assigned: shift.Assigned}, function (err) {
+    db.shifts.update({_id: shift._id}, {StoreNumber: shift.StoreNumber, StoreName: shift.StoreName, Shift: shift.Shift, Department: shift.Department, ShiftType: shift.ShiftType, ShiftTime: shift.ShiftTime, Duration: shift.Duration, ShiftDate: shift.ShiftDate, ShiftId: shift.ShiftId, Assigned: shift.Assigned}, function (err) {
       if (err) {
+        res.status(500).send(err);
         throw err;
       }
       else {
