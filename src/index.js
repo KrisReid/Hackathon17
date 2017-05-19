@@ -149,7 +149,7 @@ function shiftsURL(){
 }
 
 function shiftPostURL(){
-  return "https://enigmatic-brook-91397.herokuapp.com/api/shift/:_id"
+  return "https://enigmatic-brook-91397.herokuapp.com/api/shift/"
 }
 
 function getShifts(callback) {
@@ -174,22 +174,23 @@ function getShiftLength(callback) {
 
     shifts = []
     for(var s of res){
-      shifts.push(s.StoreName);
+      if(s.Assigned == "false"){
+        shifts.push(s.StoreName);
+      }
     }
     callback(shifts.length)
   })
 }
 
-
-// function putShift(shift) {
-//   request.put(shiftsUpdateURL(),function(error, response, shift){
-//     if (error) {
-//       console.log(error);
-//     }else{
-//       console.log(reponse)
-//     }
-//   }
-// }
+function putShift(shift) {
+  request.post({
+    headers: {'content-type' : 'application/json'},
+    url:     shiftsUpdateURL()+shift._id,
+    body:    shift
+  }, function(error, response, body){
+    console.log(body);
+  }); 
+}
 
 
 function handleBookOneIntentResponse(intent, session, callback) {
@@ -202,7 +203,6 @@ function handleBookOneIntentResponse(intent, session, callback) {
 
     firstShift.Assigned = "true"
     putShift(firstShift)
-    console.log(firstShift)
 
   })
 }
